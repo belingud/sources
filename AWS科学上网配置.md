@@ -82,6 +82,8 @@
 1. android版本https://github.com/shadowsocks/shadowsocks-android
 
 
+---
 
+参考了文章：https://github.com/belingud/PythonCourse/blob/master/welfare/ke-xue-shang-wang.md
 
 

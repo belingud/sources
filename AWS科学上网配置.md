@@ -34,6 +34,7 @@
 编写一个配置文件，在/etc/shadowsocks.json中编写配置（如果没有就创建）
 
 单用户配置:
+```json
     {
         "server":"0.0.0.0",
         "server_port":"9229",
@@ -44,8 +45,9 @@
         "method":"aes-256-cfb",
         "fast_open":false
     }
-
+```
 多用户配置:
+```json
     {
         "server":"0.0.0.0",
         "server_port":"9229",
@@ -60,6 +62,7 @@
         "method":"aes-256-cfb",
         "fast_open":false
     }
+```
 
 一般单用户就够了，可以在多台设备登录。
 

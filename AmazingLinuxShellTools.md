@@ -2,9 +2,12 @@
 
 Ubuntu的默认命令行工具是bash，配置文件是`.bashrc`。
 
-## 首先，放弃`bash`，使用`zsh`：`sudo apt install zsh`
+## 首先，放弃`bash`
 
-## 将`.bashrc`中配置的别名、变量，以及其他配置转移到`.zshrc`中
+
+使用`zsh`：`sudo apt install zsh`
+
+将`.bashrc`中配置的别名、变量，以及其他配置转移到`.zshrc`中
 
 ```shell
 cp ~/.bashrc ~/.zshrc

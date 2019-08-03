@@ -6,6 +6,17 @@ python的美化`dir()`方法的输出结果
 
 github地址：https://github.com/laike9m/pdir2
 
+使用：
+
+```python
+import pdir
+import requests
+
+resp = requests.get('www.baidu.com')
+
+pdir(resp)
+```
+
 2. **better-exception**:
 
 美化python错误提示，每个变量、语法等的错误，都会有明显的标示

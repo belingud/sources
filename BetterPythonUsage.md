@@ -1,6 +1,6 @@
 # 一些可以更好使用python命令行、编码的 **pypi** 库
 
-1. **pdir2**：
+## pdir2：
 
 python的美化`dir()`方法的输出结果
 
@@ -17,7 +17,7 @@ resp = requests.get('www.baidu.com')
 pdir(resp)
 ```
 
-2. **better-exception**:
+## better-exception:
 
 美化python错误提示，每个变量、语法等的错误，都会有明显的标示
 
@@ -81,6 +81,30 @@ MIDDLEWARE = [
 ...
     'myapp.middleware.BetterExceptionsMiddleware',
 ]
+```
+
+## fake
+
+fake是一个用于生成假数据的库，支持多种语言，你值得拥有。示例代码：
+
+```python
+fake.address()
+# '辽宁省雪市静安廉街b座 998259'
+
+fake.street_address()
+# '巢湖街U座'
+
+fake.building_number()
+# 'x座'
+
+fake.city_suffix()
+# '市'
+
+fake.latitude()
+# Decimal('-0.295126')
+
+fake.province()
+# '湖北省'
 ```
 
 

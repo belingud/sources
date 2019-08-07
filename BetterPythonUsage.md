@@ -4,6 +4,10 @@
 
 python的美化`dir()`方法的输出结果
 
+```shell
+pip install pdir
+```
+
 github地址：https://github.com/laike9m/pdir2
 
 使用：
@@ -20,6 +24,10 @@ pdir(resp)
 ## better-exception:
 
 美化python错误提示，每个变量、语法等的错误，都会有明显的标示
+
+```shell
+pip install better-exception
+```
 
 Pretty and more helpful exceptions in Python, automatically.
 
@@ -110,6 +118,10 @@ fake.province()
 ## pysnooper
 
 将python程序的运行状态全部打印出来，变量变化，运行内存变化等
+
+```shell
+pip install pysnooper
+```
 
 只需要添加一个装饰器`@pysnooper.snoop()`，其他具体用法查看github地址：
 

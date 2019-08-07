@@ -107,4 +107,10 @@ fake.province()
 # '湖北省'
 ```
 
+## pysnooper
 
+将python程序的运行状态全部打印出来，变量变化，运行内存变化等
+
+只需要添加一个装饰器`@pysnooper.snoop()`，其他具体用法查看github地址：
+
+https://github.com/cool-RR/PySnooper

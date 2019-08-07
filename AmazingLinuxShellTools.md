@@ -68,42 +68,26 @@ github地址：https://github.com/tldr-pages/tldr-python-client
 ```shell
 pip install tldr
 tldr tar
-# tar                                                                              
-                                                                                   
+# tar                                                                                                                                              
   Archiving utility.                                                               
   Often combined with a compression method, such as gzip or bzip.                  
-  More information: <https://www.gnu.org/software/tar>.                            
-                                                                                   
+  More information: <https://www.gnu.org/software/tar>.                           
 - Create an archive from files:                                                    
-                                                                                   
   tar -cf target.tar file1 file2 file3                                             
-                                                                                   
 - Create a gzipped archive:                                                        
-                                                                                   
   tar -czf target.tar.gz file1 file2 file3                                         
-                                                                                   
 - Extract an archive in a target directory:                                        
-                                                                                   
   tar -xf source.tar -C directory                                                  
-                                                                                   
 - Extract a gzipped archive in the current directory:                              
-                                                                                   
-  tar -xzf source.tar.gz                                                           
-                                                                                   
+  tar -xzf source.tar.gz                                                          
 - Extract a bzipped archive in the current directory:                              
-                                                                                   
   tar -xjf source.tar.bz2                                                          
-                                                                                   
 - Create a compressed archive, using archive suffix to determine the compression program:
-                                                                                   
+         
   tar -caf target.tar.xz file1 file2 file3                                         
-                                                                                   
 - List the contents of a tar file:                                                 
-                                                                                   
   tar -tvf source.tar                                                              
-                                                                                   
 - Extract files matching a pattern:                                                
-                                                                                   
   tar -xf source.tar --wildcards "*.html" 
 ```
 
@@ -120,4 +104,16 @@ export TLDR_CACHE_ENABLED=1
 export TLDR_CACHE_MAX_AGE=720
 ```
 
+## 命令行代码高亮
 
+`zsh-syntax-highlighting`，一个zsh的插件，可以实现向fish一样的命令行代码高亮。
+
+使用oh-my-zsh安装十分简单，git clone然后在`.zshrc`里面添加这个插件就可以。
+
+github地址：https://github.com/zsh-users/zsh-syntax-highlighting
+
+## 快捷解压命令
+
+`extract`命令行工具，也是一个zsh的插件，可以使用一个`x`来实现解压命令，解压任何压缩包，不用记格式对应的命令，怎么解压由程序决定。
+
+github地址：https://github.com/thetic/extract

@@ -1,0 +1,112 @@
+POST http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T035723.200.json
+
+###
+
+POST http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T035646.200.json
+
+###
+
+POST http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T035145.200.json
+
+###
+
+POST http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T035143.200.json
+
+###
+
+POST http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T035106.200.json
+
+###
+
+POST http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T035103.200.json
+
+###
+
+POST http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T035043.200.json
+
+###
+
+POST http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T035004.200.json
+
+###
+
+POST http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T034754.500.html
+
+###
+
+GET http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T033818.200.json
+
+###
+
+GET http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T033809.200.json
+
+###
+
+POST http://localhost:5000/books?b_name=C++&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T033600.200.json
+
+###
+
+POST http://localhost:5000/books?b_name=CookBook&b_price=100
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T033027.500.html
+
+###
+
+GET http://localhost:5000/books
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-05-22T024546.200.json
+
+###
+

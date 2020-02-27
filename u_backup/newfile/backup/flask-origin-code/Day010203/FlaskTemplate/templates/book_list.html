@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BookList</title>
+</head>
+<body>
+
+<h2>藏书阁</h2>
+
+<ul>
+    {% for book in book_list %}
+        <li>{{ book.name }}</li>
+    {% endfor %}
+
+</ul>
+
+</body>
+</html>

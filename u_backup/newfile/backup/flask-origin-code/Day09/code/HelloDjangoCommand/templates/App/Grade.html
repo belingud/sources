@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade</title>
+</head>
+<body>
+
+<h2>班级名字:{{ grade.g_name }}</h2>
+
+<ul>
+
+    {% for student in grade.student_set.all %}
+        <li>{{ student.s_name }}</li>
+    {% endfor %}
+
+
+</ul>
+
+</body>
+</html>

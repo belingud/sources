@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BookList</title>
+</head>
+<body>
+
+<h2>没事多看书</h2>
+
+<h2>没事多喝热水</h2>
+
+<ul>
+    {% for book in object_list %}
+        <li>{{ book.b_name }}</li>
+    {% endfor %}
+
+</ul>
+
+<hr>
+
+<ul>
+    {% for book in book_list %}
+        <li>{{ book.b_name }}</li>
+    {% endfor %}
+
+</ul>
+
+</body>
+</html>

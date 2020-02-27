@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+<h1>最近天气好热，夏天来了</h1>
+
+<h2>气温{% widthratio num 4 2 %}</h2>
+
+<ul>
+    {% for hobby in hobbies %}
+
+        {% if forloop.counter|divisibleby:2 %}
+            <li style="color:red">{{ hobby }}</li>
+        {% else %}
+            <li style="color:#091fff">{{ hobby }}</li>
+        {% endif %}
+
+    {% endfor %}
+
+</ul>
+
+<hr>
+
+{% ifequal value1 value2 %}
+<h2>德玛西亚</h2>
+{% endifequal %}
+
+
+<h2>{{ num|add:-10 }}</h2>
+
+<hr>
+<h2>{{ hobbies|join:"=" }}</h2>
+
+<hr>
+
+<h3>{{ msg|safe }}</h3>
+
+{% autoescape on %}
+    {{ msg }}
+{% endautoescape %}
+
+<hr>
+
+<h2>反向解析</h2>
+
+<a href="{% url 'uapp:chome' %}">回家</a>
+<a href="/app/home/">回家</a>
+
+<h4>有参数</h4>
+{#位置参数#}
+<a href="{% url 'uapp:students' value1 value2 %}">学生</a>
+{#关键字参数#}
+<a href="{% url 'uapp:date' year=value1 month=value2 day=50 %}">学生</a>
+
+</body>
+</html>

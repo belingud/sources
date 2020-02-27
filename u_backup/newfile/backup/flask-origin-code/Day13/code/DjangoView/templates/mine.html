@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mine</title>
+{#    <link rel="stylesheet" href="/static/css/mine.css">#}
+    <link rel="stylesheet" href="{% static 'css/mine.css' %}">
+</head>
+<body>
+
+<h1>欢迎回来:{{ username }}</h1>
+
+<br>
+
+<a href="{% url 'app:logout' %}">退出</a>
+
+</body>
+</html>

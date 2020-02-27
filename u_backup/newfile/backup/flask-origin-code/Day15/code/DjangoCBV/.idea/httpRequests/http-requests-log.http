@@ -1,0 +1,114 @@
+PUT http://localhost:8000/app/customview
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T115156.200.html
+
+###
+
+POST http://localhost:8000/app/customview
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T115153.200.html
+
+###
+
+POST http://localhost:8000/app/customview
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T115152.200.html
+
+###
+
+POST http://localhost:8000/app/customview
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T114542.200.html
+
+###
+
+PATCH http://localhost:8000/app/customview
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T113802.200.html
+
+###
+
+PUT http://localhost:8000/app/customview
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T113758.200.html
+
+###
+
+POST http://localhost:8000/app/customview
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T113755.200.html
+
+###
+
+GET http://localhost:8000/app/customview
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T113751.200.html
+
+###
+
+PUT http://localhost:8000/app/hello
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T103531.200.html
+
+###
+
+PUT http://localhost:8000/app/hello
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PUT http://localhost:8000/app/hello
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+PUT http://localhost:8000/app/hello
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8000/app/hello
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T103427.200.html
+
+###
+
+POST http://localhost:8000/app/hello
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T103406.403.html
+
+###
+
+GET http://localhost:8000/app/hello
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-06-02T103400.200.html
+
+###
+

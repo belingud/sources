@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+</head>
+<body>
+
+<form action="{% url 'two:upload' %}" method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <input type="text" name="username" placeholder="请输入用户名">
+
+    <input type="file" name="icon" placeholder="请选择头像">
+
+    <button>提交</button>
+
+
+</form>
+
+</body>
+</html>

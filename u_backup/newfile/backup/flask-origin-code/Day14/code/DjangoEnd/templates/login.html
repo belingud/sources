@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            $("img").click(function () {
+                {#alert("你点到我了");#}
+                $(this).attr("src", "/app/getcode/?" + Math.random());
+            })
+
+        })
+    </script>
+</head>
+<body>
+
+<form action="{% url 'app:login' %}" method="post">
+
+    {% csrf_token %}
+
+    <input type="text" name="username" placeholder="请输入用户名">
+
+    <input type="text" name="verify_code" placeholder="请输入验证码">
+
+    <img src="{% url 'app:get_code' %}" alt="code">
+
+    <button>登录</button>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+[
+  {
+    "url": "http://localhost:8000/app/books/1/",
+    "b_name": "é¬¼è°·å­",
+    "b_price": 20.0
+  },
+  {
+    "url": "http://localhost:8000/app/books/2/",
+    "b_name": "Cookbook",
+    "b_price": 20000.0
+  }
+]

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+
+
+</head>
+<body>
+
+{% include 'header.html' %}
+
+{% include 'banner.html' %}
+
+{% include 'content.html' %}
+
+
+{% macro hello(name) %}
+    <h1>站起来的{{ name }}好帅啊</h1>
+    <span>666</span>
+{% endmacro %}
+
+
+{{ hello("小明") }}
+
+
+{% from 'ms.html' import haha %}
+
+{{ haha() }}
+
+<ul>
+    {% for hobby in hobbies %}
+        {% if loop.first %}
+            <li style="color: red">{{ hobby }}</li>
+        {% elif loop.last %}
+            <li style="color: green">{{ hobby|upper }}</li>
+        {% else %}
+            <li>{{ hobby|reverse }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+<hr>
+
+<p>{{ content|safe }}</p>
+
+</body>
+</html>

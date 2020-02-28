@@ -1,8 +1,0 @@
-GET http://localhost:8000/two/index
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-05-29T031440.200.html
-
-###
-

@@ -1,7 +1,0 @@
-{
-    "python.pythonPath": "/home/vic/.pyenv/versions/3.6.6/bin/python",
-    "python.linting.flake8Enabled": false,
-    "python.linting.pylintEnabled": false,
-    "python.linting.pep8Enabled": true,
-    "python.linting.enabled": true
-}

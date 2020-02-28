@@ -1,9 +1,0 @@
-{
-  "status": 201,
-  "data": {
-    "id": 2,
-    "b_price": 100.0,
-    "b_name": "C++"
-  },
-  "msg": "save success"
-}

@@ -1,8 +1,0 @@
-1.数据库中文插入异常，多数情况下都是编码问题，查看数据库编码
-show variables like 'character_set_database'; 
-
-2.创建数据库指定编码为utf8
-create database Learn character set utf8;
-
-3.创建数据库并制定编码为utf8
-create database Learn charset=utf8

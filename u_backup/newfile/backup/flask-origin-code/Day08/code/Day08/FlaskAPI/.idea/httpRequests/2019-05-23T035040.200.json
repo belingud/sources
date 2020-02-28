@@ -1,7 +1,0 @@
-{
-  "status": 200,
-  "msg": "login sucess",
-  "data": {
-    "token": "b75095b6bd2540b4b4a6f68b505a80dd"
-  }
-}

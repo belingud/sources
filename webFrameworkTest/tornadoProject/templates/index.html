@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h2>it will be a raining week</h2>
+{% end %}
+{% block content %}
+<ul>
+    {% for hobby in hobbies %}
+    <li>{{ hobby }}</li>
+    {% end %}
+</ul>
+<hr>
+{% end %}
+{% block footer %}
+<p>this is a footer</p>
+{% end %}

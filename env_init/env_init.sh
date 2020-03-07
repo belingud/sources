@@ -1,11 +1,9 @@
-
 command_exists() {
     command "$@"
 }
 
-apt_install() {
-    if (( whoami == root))
-    then
+install_package() {
+    if ((whoami == root)); then
         apt install -y $@
     else
         sudo apt install -y $@
@@ -13,19 +11,17 @@ apt_install() {
 }
 
 check_and_install() {
-    for comm in $@
-    do
+    for comm in $@; do
         command_exists $comm || {
             echo "############### $comm not found, install $comm ################"
-            apt_install $comm
-    }
+            install_package $comm
+        }
     done
 }
 
 check_and_install zsh git wget curl
 curl https://pyenv.run | bash
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 
 # if (( uname -s == Linux))
 # then

@@ -2,7 +2,8 @@ version: "2"
 
 services:
   env_test:
-    image: env_init:0.3
+    build: .
+    image: env_init:0.4
     restart: always
     ports:
      - "443:443"

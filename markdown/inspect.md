@@ -1,21 +1,25 @@
 官网对inspect模块的解释是：
 inspect模块主要提供了四种用处：
 
-对是否是模块，框架，函数等进行类型检查
-获取源码
-获取类或函数的参数信息
-解析堆栈
+- 对是否是模块，框架，函数等进行类型检查
+- 获取源码
+- 获取类或函数的参数信息
+- 解析堆栈
+
 说白了就是以下三大类：
 
-检查对象(isxxx)
-获取对象（getxxx)
-解析堆栈对象实例
+- 检查对象(isxxx)
+- 获取对象（getxxx)
+- 解析堆栈对象实例
+
 先说说解析堆栈对象实例，个人感觉这是最有用的
 我们可以写个Demo来模拟log日志打印
 我们希望打印的时候实现以下需求：
 
-打印变量值，也打印变量名
-打印出是在哪个文件，哪个方法，哪一行执行打印了
+- 打印变量值，也打印变量名
+- 打印出是在哪个文件，哪个方法，哪一行执行打印了
+
+```python
 import inspect
 
 def f2():
@@ -29,27 +33,34 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
 
 打印结果简化后是这样的：
 
+```shell
 [
 FrameInfo(frame=<frame object at F398>, filename='D:/demo.py', lineno=5, function='v2', code_context=['print(inspect.stack())\n'], index=0),
 FrameInfo(frame=<frame object at 1BA8>, filename='D:/demo.py', lineno=9, function='v1', code_context=['v2()\n'], index=0),
 FrameInfo(frame=<frame object at 1A08>, filename='D:/demo.py', lineno=13, function='main', code_context=['v1()\n'], index=0),
 FrameInfo(frame=<frame object at F1F0>, filename='D:/demo.py', lineno=17, function='<module>', code_context=['main()\n'], index=0)
 ]
+```
 
 于是我们可以知道返回堆栈的返回结果是几个元组组成的列表。
-我们的代码调用关系是：__main__–> main()–>f1()–> f2()
+
+我们的代码调用关系是：`__main__–> main()–>f1()–> f2()`
+
 仔细看打印信息，我们可以发现：
-列表中的第0个元组是f2()的堆栈信息
-列表中的第1个元组是f1()的堆栈信息
-列表中的第2个元组是main()的堆栈信息
-列表中的第3个元组是__main__的堆栈信息
+
+1. 列表中的第0个元组是f2()的堆栈信息
+2. 列表中的第1个元组是f1()的堆栈信息
+3. 列表中的第2个元组是main()的堆栈信息
+4. 列表中的第3个元组是__main__的堆栈信息
 
 层层调用，层层递归，最终指向最初调用的位置，
 有没有发现它和Python报错信息非常相像，我们确实可以用inspect模拟logger日志，OK来个实例吧：
 
+```python
 import inspect
 import re
 import time
@@ -108,15 +119,17 @@ def wdp(_variable):
 if __name__ == '__main__':
     p = Person("王宝强", 25, "上海")
     wdp(p)
+```
 
 最后再说说检查对象和获取对象
 
 一个Python脚本中对象无外乎以下几种：
 
-模块
-类
-方法
-变量（信息太少，inspect直接忽略了）
+- 模块
+- 类
+- 方法
+- 变量（信息太少，inspect直接忽略了）
+
 于是上面的三大类又可以细分为：
 
 检查对象

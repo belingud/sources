@@ -4,9 +4,9 @@ command_exists() {
 
 install_package() {
     if ((whoami == root)); then
-        apt install -y $@
+        sh -c 'apt install -y $@'
     else
-        sudo apt install -y $@
+        sh -c 'sudo apt install -y $@'
     fi
 }
 

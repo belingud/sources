@@ -132,7 +132,7 @@ class MyUser(AbstractBaseUser):
 
 
 
-```ruby
+```python
 def create_user(self, email, date_of_birth, password=None):
     # create user here
     ...
@@ -143,7 +143,7 @@ def create_user(self, email, date_of_birth, password=None):
 
 
 
-```ruby
+```python
 def create_superuser(self, email, date_of_birth, password):
     # create superuser here
     ...

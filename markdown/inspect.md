@@ -132,36 +132,36 @@ if __name__ == '__main__':
 
 于是上面的三大类又可以细分为：
 
-检查对象
-检查是否为模块（ ismodule）
-检查是否为类（）
-是否为类（ isclass）
-是否为基类（ isabstract）
-检查是否为方法（）
-是否为方法（ ismethod）
-是否为函数（ isfunction）
-是否为生成器函数（ isgeneratorfunction）
-是否为生成器（ isgenerator）
-是否为traceback（ istraceback）
-是否为built-in函数或方法（ isbuiltin）
-是否为用户自定义或者built-in方法（ isroutine）
-是否为方法标识（ismethoddescriptor）
-检查是否为变量（）
-是否为数字标识符
-获取对象（getxxx)
-获取模块（）
-获取模块（ getmodule）
-获取模块名（ getmodulename）
-获取类（ ）
-获取类的继承结构（ getmro）
-获取方法声明的参数（ getargspec）
-获取方法（）
-获取方法声明的参数（ getargspec）
-获取方法声明的值（ getargvalues）
-模块/类/方法都有的：
-获取成员（ getmembers）
-获取源码（ getsource）
-获取源码所在行（ getsourcelines）
-获取对象定义所在的模块的文件名 （ getfile）
-获取对象注释（ getcomments）
-获取 对象documentation信息（ getdoc）
+- 检查对象
+    - 检查是否为模块（ismodule）
+    - 检查是否为类
+      - 是否为类（isclass）
+      - 是否为基类（isabstract）
+    - 检查是否为方法
+      - 是否为方法（ismethod）
+      - 是否为函数（isfunction）
+      - 是否为生成器函数（isgeneratorfunction）
+      - 是否为生成器（isgenerator）
+      - 是否为traceback（istraceback）
+      - 是否为built-in函数或方法（isbuiltin）
+      - 是否为用户自定义或者built-in方法（isroutine）
+      - 是否为方法标识（ismethoddescriptor）
+    - 检查是否为变量
+      - 是否为数字标识符
+- 获取对象（getxxx)
+    - 获取模块
+      - 获取模块（getmodule）
+      - 获取模块名（getmodulename）
+    - 获取类
+      - 获取类的继承结构（getmro）
+      - 获取方法声明的参数（getargspec）
+    - 获取方法
+      - 获取方法声明的参数（getargspec）
+      - 获取方法声明的值（getargvalues）
+- 模块/类/方法都有的：
+    - 获取成员（getmembers）
+    - 获取源码（getsource）
+    - 获取源码所在行（getsourcelines）
+    - 获取对象定义所在的模块的文件名 （getfile）
+    - 获取对象注释（getcomments）
+    - 获取 对象documentation信息（getdoc）

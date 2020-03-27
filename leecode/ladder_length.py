@@ -66,7 +66,7 @@ class Tmp:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if endWord not in wordList:
             return 0
-        l = len(endWord)
+        length = len(endWord)
         ws = set(wordList)
 
         head = {beginWord}
@@ -79,7 +79,7 @@ class Tmp:
 
             q = set()
             for cur in head:
-                for i in range(l):
+                for i in range(length):
                     for j in tmp:
                         word = cur[:i] + j + cur[i + 1 :]
                         if word in tail:

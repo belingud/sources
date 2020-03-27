@@ -62,10 +62,10 @@ read命令接收标准输入（键盘）的输入，或其他文件描述符的�
 
 ```shell
 #!/bin/bash
-echo -n "Enter your name:"   //参数-n的作用是不换行，echo默认是换行
-read  name                   //从键盘输入
-echo "hello $name,welcome to my program"     //显示信息
-exit 0                       //退出shell程序。
+echo -n "Enter your name:"   # 参数-n的作用是不换行，echo默认是换行
+read  name                   # 从键盘输入
+echo "hello $name,welcome to my program"     # 显示信息
+exit 0                       # 退出shell程序。
 ```
 由于read命令提供了-p参数，允许在read命令行中直接指定一个提示。
 
@@ -151,11 +151,11 @@ exit 0
 
 ```shell
 #!/bin/bash
-count=1    //赋值语句，不加空格
-cat test | while read line        //cat 命令的输出作为read命令的输入,read读到的值放在line中
+count=1    # 赋值语句，不加空格
+cat test | while read line        # cat 命令的输出作为read命令的输入,read读到的值放在line中
 do
    echo "Line $count:$line"
-   count=$[ $count + 1 ]          //注意中括号中的空格。
+   count=$[ $count + 1 ]          # 注意中括号中的空格。
 done
 echo "finish"
 exit 0

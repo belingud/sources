@@ -1,3 +1,5 @@
+# 引言
+
 官网对inspect模块的解释是：
 inspect模块主要提供了四种用处：
 
@@ -12,8 +14,66 @@ inspect模块主要提供了四种用处：
 - 获取对象（getxxx)
 - 解析堆栈对象实例
 
+`inspect`模块很大的依赖于`types`模块,其中封装的方法和操作,也是根据对象自有的属性和方法来进行判断和获取,分析其源码可以更好的理解Python中各种对象的差别.
+
+比如**function**和**method**的区别:
+
+看一个示例:
+
+```python
+def func(): pass
+
+
+class A:
+    def o_func(self): pass
+    
+    @staticmethod
+    def s_func(): pass
+
+    @classmethod
+    def c_func(cls): pass
+
+
+print(func)
+# <function __main__.func()>
+
+print(A.o_func)
+# <function __main__.A.o_func()>
+
+print(A.s_func)
+# <function __main__.A.s_func()>
+
+print(A.c_func)
+# <bound method A.c_func of <class '__main__.A'>>
+
+a = A()
+
+print(a.o_func)
+# <bound method A.o_func of <__main__.A object at 0x110a7f710>>
+
+print(a.s_func)
+# <function __main__.A.s_func()>
+
+print(a.c_func)
+# <bound method A.c_func of <class '__main__.A'>>
+```
+
+> 我们暂时忽略函数能否被成功调用
+
+我们可以从一切皆是对象的思路触发,来分析这个打印,首先对象方法和对象绑定,静态方法不和任何对象绑定,类方法和类本身绑定,那么总结来说大概可以看成:
+
+- 与对象绑定的函数为`method`
+- 不和任何对象绑定的函数为`function`
+- 关键字`def`定义的函数为`function`
+
+这只是思路的一部分,本文主要讲`inspect`的使用,源码分析在后续文章补充.
+
+# inspet
+
 先说说解析堆栈对象实例，个人感觉这是最有用的
+
 我们可以写个Demo来模拟log日志打印
+
 我们希望打印的时候实现以下需求：
 
 - 打印变量值，也打印变量名
@@ -129,6 +189,8 @@ if __name__ == '__main__':
 - 类
 - 方法
 - 变量（信息太少，inspect直接忽略了）
+
+# 总结
 
 于是上面的三大类又可以细分为：
 

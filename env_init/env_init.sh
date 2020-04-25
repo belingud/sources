@@ -1,5 +1,5 @@
 command_exists() {
-    command "$@"
+    command -v "$@"
 }
 
 install_package() {
@@ -19,9 +19,13 @@ check_and_install() {
     done
 }
 
-check_and_install zsh git wget curl
-curl https://pyenv.run | bash
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+check_and_install git wget curl
+echo "################git wget curl installed###############"
+sh -c "$(curl https://pyenv.run | bash)"
+echo "################pyenv installed##############"
+check_and_install zsh
+echo "###############zsh installed#################"
+sh -c "$(wget -O- --no-check-certificate https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # if (( uname -s == Linux))
 # then

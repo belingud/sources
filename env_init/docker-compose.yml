@@ -3,7 +3,7 @@ version: "2"
 services:
   env_test:
     build: .
-    image: env_init:0.5
+    image: env_init:0.1
     restart: always
     container_name: env_test
     ports:

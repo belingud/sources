@@ -6,11 +6,10 @@ from tornado.web import RequestHandler
 
 
 class IndexHandler(RequestHandler):
-
     @gen.coroutine
     def get(self):
         # print(self)
-        hobbies = ["learn", 'study']
+        hobbies = ["learn", "study"]
         http_client = AsyncHTTPClient()
         # response = yield [http_client.fetch("http://cn.bing.com")]
         # print(f'response ::: ', response)
@@ -37,5 +36,3 @@ class DateHandler(RequestHandler):
 @gen.coroutine
 def test_gen():
     return "oops"
-
-

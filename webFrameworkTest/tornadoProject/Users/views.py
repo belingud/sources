@@ -21,4 +21,3 @@ class DBHandler(RequestHandler):
 class UsersHandler(RequestHandler):
     def get(self):
         self.write("user")
-

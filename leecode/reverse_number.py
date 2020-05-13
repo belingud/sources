@@ -24,6 +24,29 @@ import time
 start = time.time()
 
 
+class Solution:
+    def reverse(self, x: int) -> int:
+        """
+        用位运算得取值范围,没有加快运行速度?
+        """
+        if not isinstance(x, int):
+            raise ValueError
+        y, res = abs(x), 0
+        edge = (1 << 31) - 1 if x > 0 else 1 << 31
+        while y != 0:
+            res = res * 10 + y % 10
+            if res > edge:
+                return 0
+            y //= 10
+        return res if x > 0 else -res
+
+
+s = Solution()
+print(s.reverse(1534236469))
+# print(s.reverse(123))
+
+print((time.time() - start) * 1000000)
+
 # class Solution:
 #     def reverse(self, x: int) -> int:
 #         """
@@ -43,25 +66,3 @@ start = time.time()
 #         if x < -pow(2, 31) or x > pow(2, 31) - 1:
 #             return 0
 #         return x
-
-
-class Solution:
-    def reverse(self, x: int) -> int:
-        """
-        用位运算得取值范围,没有加快运行速度?
-        """
-        y, res = abs(x), 0
-        edge = (1 << 31) - 1 if x > 0 else 1 << 31
-        while y != 0:
-            res = res * 10 + y % 10
-            if res > edge:
-                return 0
-            y //= 10
-        return res if x > 0 else -res
-
-
-s = Solution()
-print(s.reverse(1534236469))
-# print(s.reverse(123))
-
-print((time.time() - start) * 1000000)

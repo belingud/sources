@@ -36,6 +36,8 @@ from collections import Counter
 
 class Solution:
     def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+        if not isinstance(cpdomains, list):
+            raise ValueError
         count_list = []
         for i in cpdomains:
             # 分离域名和访问的次数

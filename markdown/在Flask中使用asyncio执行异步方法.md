@@ -1,0 +1,4 @@
+Flask是一个同步的，使用WSGI协议的Python WEB框架，他不能喝sanic，fastapi那样使用异步的事件循环来处理请求，也不能利用nvicorn等的ASGI服务器来加速自己，耗时任务需要发布到Celery来执行。
+
+这里提供一种思路，在flask项目中，使用asyncio模块，来实现异步任务。主要是利用了asyncio的时间循环event loop可以
+

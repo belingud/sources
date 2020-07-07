@@ -1,8 +1,9 @@
 from gevent import monkey
+
 monkey.patch_all()
 
 import gevent
-from flask import Flask
+from flask import Flask, current_app
 import threading
 import pymysql
 from flask_cors import CORS
@@ -21,7 +22,7 @@ app.config[
 ] = "mysql+pymysql://root:vic~hell@47.102.98.115:3306/flask_demo"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["SQLALCHEMY_ECHO"] = True
-app.config['DEBUG'] = True
+app.config["DEBUG"] = True
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -78,15 +79,16 @@ def main():
     pool.terminate()
 
 
-@app.route('/', methods=['POST'])
+@app.route("/", methods=["POST"])
 def index():
     saved = gevent.monkey.saved
-    logger.info(f'keys: {list(saved.keys())}')
+    logger.info(f"keys: {list(saved.keys())}")
     logger.info(f'saved {saved["threading"]}')
+    logger.info(f"equal app: {current_app is app}")
     return {"msg": "ok"}
 
 
-@app.route('/test')
+@app.route("/test")
 def test():
     import threading
     import time
@@ -94,27 +96,28 @@ def test():
     class ExampleThread(threading.Thread):
         def run(self):
             time.sleep(3)  # takes a few minutes to finish
-            print('finished working')
+            print("finished working")
+
     worker = ExampleThread()
     worker.start()
-    print('this should be printed before the worker finished')
+    print("this should be printed before the worker finished")
     return {"msg": "ok"}
 
 
-@app.route('/process')
+@app.route("/process")
 def process():
     main()
     return {"msg": "ok"}
 
 
-@app.route('/count')
+@app.route("/count")
 def count():
     return {"count": len(threading.enumerate())}
 
 
 # @app.errorhandler(Exception)
 def handler(error):
-    return 'error'
+    return "error"
 
 
 if __name__ == "__main__":

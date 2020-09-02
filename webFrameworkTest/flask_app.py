@@ -1,6 +1,6 @@
 from gevent import monkey
 
-monkey.patch_all()
+monkey.patch_all(thread=False)
 
 import gevent
 from flask import Flask, current_app

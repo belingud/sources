@@ -5,14 +5,9 @@ from functools import wraps, partial
 
 
 def wrap_caller(caller):
-    print('wrap caller')
-
     def decor(f):
-        print('wrap caller decor')
-
         @wraps(f)
         def wrapper(*args, **kwargs):
-            print('wrapper caller decor wrapper')
             return caller(f, *args, **kwargs)
 
         return wrapper
@@ -21,14 +16,13 @@ def wrap_caller(caller):
 
 
 def __retry_internal(
-        f, exceptions=Exception, tries=-1,
+    f, exceptions=Exception, tries=-1,
 ):
-    print('__retry_internal')
     _tries = tries
     while _tries:
         try:
             return f()
-        except exceptions as e:
+        except exceptions:
             _tries -= 1
             if not _tries:
                 raise
@@ -42,11 +36,9 @@ def retry(exceptions=Exception, tries=-1):
         exceptions: exceptions you want to catch, can be a tuple, Exception by default
         tries: times you want to retry,never stop by default
     """
-    print('retry')
 
     @wrap_caller
     def retry_decorator(f, *fargs, **fkwargs):
-        print('retry retry_decorator')
         args = fargs if fargs else list()
         kwargs = fkwargs if fkwargs else dict()
 
@@ -61,5 +53,5 @@ def t(a):
     # a/0
 
 
-print('function running')
+print("function running")
 t(11)

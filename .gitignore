@@ -14,6 +14,9 @@ celerybeat-schedule.dir
 test.sqlite3
 #migrations/
 
+# Mac
+.DS_Store
+
 # C extensions
 *.so
 

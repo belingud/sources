@@ -22,6 +22,8 @@ limit 1 by unique_id;
 
 第二步：
 
+实现将分数进行分组排序，标号，数据此时是拼接在一起的，无法直接使用。
+
 ```sql
 select lesson_id,
        groupArray(score)              as array_val,
@@ -36,6 +38,16 @@ from (select *
 group by lesson_id;
 ```
 
+查询结果类似：
+
+| lesson_id | array_val     | row_num | rank    |
+| --------- | ------------- | ------- | ------- |
+| 1         | [100, 99, 98] | [1,2,3] | [1,2,3] |
+| 2         | [99, 99, 98]  | [1,2,3] | [1,1,3] |
+
+第三步：
+
+将备好的数据按照字段筛选，组合成包含每条成绩数据的统计表。
 
 ```sql
 select *
@@ -55,3 +67,14 @@ from (select score, row_num, rank, lesson_id
       order by lesson_id, row_num)
 where row_num < 10;
 ```
+
+最终查询结果：
+
+| score | row | rank | lesson_id |
+| ----- | --- | ---- | --------- |
+| 100   | 1   | 1    | 8065      |
+| 99.8  | 2   | 2    | 8065      |
+| 99.7  | 3   | 3    | 8065      |
+| 99.7  | 4   | 3    | 8065      |
+
+获取到了行号和分数对应的排名数据并且rank是有并列排名的。

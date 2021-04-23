@@ -1,0 +1,119 @@
+version: '3'
+
+networks:
+    backend:
+
+services:
+    php71:
+        image: trylife/phpdev:7.1-fpm
+        container_name: tmp-php71
+        command: php -S 0.0.0.0:80 -t www
+        environment:
+            - docker=true
+            - TZ=Asia/Shanghai
+        ports:
+            - 9999:80
+        networks:
+            - backend
+        depends_on: 
+            - mysql
+            - redis
+        volumes:
+            - ../dss_crm:/var/www
+            # - ./php.ini:/usr/local/etc/php/php.ini
+        working_dir: /var/www
+    php:
+        container_name: tmp-php
+        image: newtype0092/panda-php:0.1.0
+        # command: php -S 0.0.0.0:80 -t www
+        networks:
+            - backend
+        depends_on: 
+            - mysql
+            - redis
+        volumes:
+            - "../dss_crm:/var/work"
+            - "./log:/data/logs"
+            - "./php.ini:/usr/local/etc/php/php.ini"
+    server:
+        build: ..
+        container_name: tmp-server
+        command: php -S 0.0.0.0:80 -t www
+        # command: tail -f /dev/null
+        working_dir: /var/work
+        tty: true
+        ports:
+            - "6080:80"
+        volumes:
+            - ../dss_crm:/var/work/
+            - ./php.ini:/usr/local/etc/php/php.ini
+        # environment:
+            # XDEBUG_CONFIG: remote_host=host.docker.internal remote_autostart=On idekey=PHPSTORM remote_port=9000
+        networks:
+            - backend
+        depends_on:
+            - mysql
+            - redis
+
+    nginx:
+        container_name: tmp-nginx
+        image: nginx:latest
+        networks:
+            - backend
+        depends_on: 
+            - php
+        ports:
+            - 8000:80
+        volumes:
+            - "./nginx/conf.d:/etc/nginx/conf.d"
+            - "./nginx/log:/var/log/nginx"
+            - "../dss_crm:/var/work"
+
+    mysql:
+        container_name: tmp-mysql
+        image: mysql:8.0
+        networks:
+            - backend
+        ports:
+            - 13306:3306
+        volumes:
+            - "./mysql/conf.d/:/etc/mysql/conf.d/"
+            - "./mysql/my.cnf:/etc/mysql/my.cnf"
+            - "./mysql/mysql.conf.d/:/etc/mysql/mysql.conf.d/"
+            - "./mysql/log/:/var/log/mysql/"
+            - "./mysql/data/:/var/lib/mysql/"
+            # - "./mysql/run/:/var/run/"
+            - "./mysql/mysql-files/:/var/lib/mysql-files/"
+        environment:
+            MYSQL_ROOT_PASSWORD: "123456"
+            TZ: Asia/Shanghai
+            MYSQL_USER: test   #创建test用户
+            MYSQL_PASSWORD: test  #设置test用户的密码w
+        # command:
+        #     --character-set-server=utf8mb4
+        #     --collation-server=utf8mb4_general_ci
+        #     --explicit_defaults_for_timestamp=true
+
+    redis:
+        container_name: tmp-redis
+        image: redis:alpine
+        networks:
+            - backend
+        ports:
+            - 16379:6379
+
+    erp:
+        build: ..
+        container_name: tmp-erp
+        command: php -S 0.0.0.0:80 -t ./www
+        working_dir: /var/www
+        ports:
+            - "9090:80"
+        volumes:
+            - ../ERP/erp:/var/www/
+            - ./php.ini:/usr/local/etc/php/php.ini
+        networks:
+            - backend
+        depends_on:
+            - mysql
+            - redis

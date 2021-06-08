@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
-RUN sed -i "s/archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list && apt-get update && \
-    apt-get install -y --no-install-recommends curl zsh git vim wget && apt-get clean && apt-get autoclean
-COPY env_init.sh /root
-COPY .zshrc /root/.zshrc
-WORKDIR /root
+# 可以使用php镜像作为开发环境，如果原始镜像无法满足开发环境的依赖，可以考虑重写新的Dockerfile来安装新的依赖
+# 起始镜像，作为底包
+FROM newtype0092/panda-php:0.1.0
+LABEL maintainer="flower"
+# 安装xhprof依赖
+RUN apk add gcc g++ make libffi-dev openssl-dev libtool m4 autoconf --no-cache && pecl install xhprof

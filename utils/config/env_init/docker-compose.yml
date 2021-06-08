@@ -1,12 +1,68 @@
-version: "2"
+version: "3"
 
-services:
-  env_test:
-    build: .
-    image: env_init:0.1
-    restart: always
-    container_name: env_test
-    ports:
-     - "443:443"
-    command:
-      tail -f /dev/null
+networks: 
+    backend: # 网络名
+        driver: bridge # 网络连接方式
+        ipam:
+            driver: default # 驱动
+            config:
+              - subnet: "172.19.0.0/25" # 子网网段
+
+services: 
+    dss-php:
+        container_name: tmp-dss-php
+        build: . # 从当前目录下面的默认Dockerfile文件构建镜像
+        # command: php -S 0.0.0.0:6080 -t /var/work/www
+        networks: 
+            - backend # 连接到backend网络
+        depends_on: # 先启动mysql和redis容器，然后启动php容器
+            - mysql
+            - redis
+        # ports:
+        #     - 6080:6080
+        volumes: 
+            - "./php.ini:/usr/local/etc/php/php.ini" # php ini文件路径
+            - "./log:/var/log" # 项目日志文件路径
+            - "../dss_crm:/var/work" # 项目文件路径
+            - "./php-fpm.conf:/usr/local/etc/php-fpm.conf" # fpm配置文件路径
+
+    nginx:
+        container_name: tmp-nginx
+        image: nginx:latest
+        networks:
+            - backend # 连接到backend网络
+        depends_on: 
+            - dss-php
+        ports:
+            - 6080:80 # 外部端口到内部端口的映射
+        volumes:
+            - "./nginx/conf.d:/etc/nginx/conf.d" # nginx 配置文件目录挂载路径
+            - "./log:/var/log" # 日志目录挂载路径
+            - "../dss_crm:/var/work" # 项目路径
+        environment: 
+            - TZ=Asia/Shanghai # 时区
+
+    mysql:
+        container_name: tmp-mysql
+        image: mysql:8.0
+        networks: 
+            - backend
+        ports: 
+            - 13306:3306
+        volumes: 
+            - "./mysql/log:/var/log/mysql" # mysql日志文件映射
+            - "./mysql/data:/var/lib/mysql" # mysql数据映射
+            # - "./mysql/run:/var/run"
+            - "./mysql/mydir:/mydir"
+        environment:
+            - "MYSQL_ROOT_PASSWORD=123456" # mysql root用户密码
+            - "TZ=Asia/Shanghai" # 时区
+
+    redis:
+        container_name: tmp-redis
+        image: redis:alpine
+        networks: 
+            - backend
+        ports:
+            - 16379:6379
+

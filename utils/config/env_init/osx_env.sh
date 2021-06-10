@@ -40,4 +40,6 @@ source ~/.zshrc
 echo "安装翻译工具Bob，php包管理软件composer，wget"
 brew install bob composer wget
 echo "开始下载docker compose文件"
-
+curl https://gitee.com/belingud/sources/raw/master/utils/config/env_init/docker-compose.yml > docker-compose.yml
+curl https://gitee.com/belingud/sources/raw/master/utils/config/env_init/Dockerfile > Dockerfile
+echo "docker compose文件下载完成，根据环境修改后在compose目录下使用 docker-compose up -d 启动"

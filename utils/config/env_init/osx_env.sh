@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 set -e;
 
 echo "安装brew环境"
@@ -11,20 +11,27 @@ command -v brew || /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN
 # 修改homebrew-cask镜像源（需要安装后才能修改）
 # git -C "$(brew --repo homebrew/cask)" remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
 # 更新
+echo "brew环境安装完成"
 brew update
 
 plugins=()
 
 # 安装ohmyzsh配置
-curl https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh | sh
+command -v omz || curl https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh | sh
 echo "########## ohmyzsh 安装成功."
+
 # 安装命令提示插件
-git clone https://github.com/zsh-users/zsh-autosuggestions \
- ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && plugins[0]="zsh-autosuggestions"
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions \
+    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && plugins[0]="zsh-autosuggestions"
+fi
 echo "########## ohmyzsh插件zsh-autosuggestions 安装成功."
+
 # 安装shell语法高亮插件
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
- ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && plugins[1]="zsh-syntax-highlighting"
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && plugins[1]="zsh-syntax-highlighting"
+fi
 
 echo "########## ohmyzsh插件zsh-stntax-highlighting 安装成功."
 
@@ -43,3 +50,4 @@ echo "开始下载docker compose文件"
 curl https://gitee.com/belingud/sources/raw/master/utils/config/env_init/docker-compose.yml > docker-compose.yml
 curl https://gitee.com/belingud/sources/raw/master/utils/config/env_init/Dockerfile > Dockerfile
 echo "docker compose文件下载完成，根据环境修改后在compose目录下使用 docker-compose up -d 启动"
+exit

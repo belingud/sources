@@ -1,0 +1,9 @@
+#!/bin/bash
+repo="$1"
+
+if [[ "${repo}" != */* ]]; then
+    repo="library/${repo}"
+fi
+
+url="https://registry.hub.docker.com/v1/repositories/${repo}/tags"
+curl -s -S "${url}" | jq '.[]["name"]' | sed 's/^"\(.*\)"$/\1/' | sort

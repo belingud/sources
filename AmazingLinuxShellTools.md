@@ -140,3 +140,24 @@ podman info
 sudo mkdir -p /etc/containers
 echo -e "[registries.search]\nregistries = ['docker.io', 'quay.io']" | sudo tee /etc/containers/registries.conf
 ```
+
+podman的命令可能出错
+
+```shell
+ERRO[0000] unable to write system event: "write unixgram @00008->/run/systemd/journal/socket: sendmsg: no such file or directory"
+WARN[0032] Failed to add conmon to systemd sandbox cgroup: dial unix /run/systemd/private: connect: no such file or directory
+```
+
+则需要修改podman配置
+
+```shell
+sudo vim /etc/containers/containers.conf
+```
+
+修改为
+
+```shell
+[engine]
+events_logger="file"
+cgroup_manager="cgroupfs"
+```

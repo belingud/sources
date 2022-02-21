@@ -117,3 +117,26 @@ github地址：https://github.com/zsh-users/zsh-syntax-highlighting
 `extract`命令行工具，也是一个zsh的插件，可以使用一个`x`来实现解压命令，解压任何压缩包，不用记格式对应的命令，怎么解压由程序决定。
 
 github地址：https://github.com/thetic/extract
+
+
+## podman
+
+linux安装podman
+
+```shell
+# 将os变量添加到shell
+. /etc/os-release
+# 添加repo地址
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x${NAME}_${VERSION_ID}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
+wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/x${NAME}_${VERSION_ID}/Release.key -O Release.key
+# 添加apt key
+curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_${VERSION_ID}/Release.key | sudo apt-key add -
+# 安装
+sudo apt update
+sudo apt install -y podman --fix-missing
+# 查看
+podman info
+# 添加镜像源
+sudo mkdir -p /etc/containers
+echo -e "[registries.search]\nregistries = ['docker.io', 'quay.io']" | sudo tee /etc/containers/registries.conf
+```

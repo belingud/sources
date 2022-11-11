@@ -4,6 +4,24 @@
 
 > `session.add()`执行之后，会将SQL语句添加到pending里面，再次使用`session.query`会强制执行pending中的SQL，然后再进行查询操作，而`model.query`不会强制执行pending中的SQL。(具体的原理和实现方式待研究。)
 
+日志如下：
+
+```shell
+>>> from app import db
+>>> session = db.session
+>>> from app import User
+>>> user = User(name='test1', pwd='test1')
+>>> session.add(user)
+>>> session.query(User).filter()
+>>> session.query(User).filter().all()
+2022-01-06 16:57:54,286 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2022-01-06 16:57:54,287 INFO sqlalchemy.engine.Engine INSERT INTO user (name, pwd, addtime) VALUES (%(name)s, %(pwd)s, %(addtime)s)
+2022-01-06 16:57:54,287 INFO sqlalchemy.engine.Engine [generated in 0.00019s] {'name': 'test1', 'pwd': 'test1', 'addtime': None}
+2022-01-06 16:57:54,292 INFO sqlalchemy.engine.Engine SELECT user.id AS user_id, user.name AS user_name, user.pwd AS user_pwd, user.addtime AS user_addtime
+FROM user
+2022-01-06 16:57:54,292 INFO sqlalchemy.engine.Engine [generated in 0.00038s] {}
+```
+
 # session
 
 首先创建一个db对象，这个对象有flask_sqlalchemy中关于数据库的所有封装
@@ -273,6 +291,15 @@ db.session.add(user)
 db.session.commit()
 # 修改查询集Query的值
 user_query = db.sessin.query(User.id < 100).update({'is_activate': 0})
+db.session.commit()
+```
+
+对于对象`user`，如果遇到无法更新某个字段值的时候，比如，你可能会遇到json类型的字段无法更新，我们可以使用`flag_modified `指定修改的字段
+
+```python
+from sqlalchemy.orm.attribute import flag_modified
+flag_modified(user, "json_field")
+db.session.add(user)
 db.session.commit()
 ```
 

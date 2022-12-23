@@ -29,7 +29,6 @@ def get_engine_url(db, is_async=True) -> str:
         driver = "aiomysql"
     else:
         driver = "mysqlconnector"
-    # 暂时不指定charset，新老系统不同mysql数据库版本不同，指定编码集会造成异常
     return f"mysql+{driver}://{user}:{passwd}@{host}:{port}/{dbname}"
 
 

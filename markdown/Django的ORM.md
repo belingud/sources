@@ -42,6 +42,7 @@ __icontains    包含,忽略大小写 ilike '%aaa%'，但是对于sqlite来说�
 ```
 
 in:
+
 ```python
 __in
 
@@ -92,33 +93,33 @@ B.objects.filter(aa__name__contains='searchtitle')#查询B表中外键aa所对�
 返回新QuerySets的API
 
 ```
-方法名	                解释
-filter()	        过滤查询对象。
-exclude()	        排除满足条件的对象
-annotate()	        使用聚合函数
-order_by()	        对查询集进行排序
-reverse()	        反向排序
-distinct()	        对查询集去重
-values()	        返回包含对象具体值的字典的QuerySet
-values_list()	    与values()类似，只是返回的是元组而不是字典。
-dates()	            根据日期获取查询集
-datetimes()	        根据时间获取查询集
-none()	            创建空的查询集
-all()	            获取所有的对象
-union()	            并集
-intersection()	    交集
-difference()	    差集
-select_related()	附带查询关联对象
-prefetch_related()	预先查询
-extra()	            附加SQL查询
-defer()	            不加载指定字段
-only()	            只加载指定的字段
-using()	            选择数据库
-select_for_update()	锁住选择的对象，直到事务结束。
-raw()	            接收一个原始的SQL查询
+方法名                    解释
+filter()            过滤查询对象。
+exclude()            排除满足条件的对象
+annotate()            使用聚合函数
+order_by()            对查询集进行排序
+reverse()            反向排序
+distinct()            对查询集去重
+values()            返回包含对象具体值的字典的QuerySet
+values_list()        与values()类似，只是返回的是元组而不是字典。
+dates()                根据日期获取查询集
+datetimes()            根据时间获取查询集
+none()                创建空的查询集
+all()                获取所有的对象
+union()                并集
+intersection()        交集
+difference()        差集
+select_related()    附带查询关联对象
+prefetch_related()    预先查询
+extra()                附加SQL查询
+defer()                不加载指定字段
+only()                只加载指定的字段
+using()                选择数据库
+select_for_update()    锁住选择的对象，直到事务结束。
+raw()                接收一个原始的SQL查询
 ```
 
-1.filter():
+1. filter():
 
 filter(**kwargs)
 
@@ -130,7 +131,7 @@ filter(**kwargs)
 Student.objects.filter(age__lt=10)#查询满足年龄小于10岁的所有学生对象
 ```
 
-2.exclude():
+2. exclude():
 
 exclude(**kwargs)
 
@@ -140,7 +141,7 @@ exclude(**kwargs)
 Student.objects.exclude(age__gt=20, name='lin')#排除所有年龄大于20岁且名字为“lin”的学员集
 ```
 
-3.annotate():
+3. annotate():
 
 nnotate(args, *kwargs)
 
@@ -163,10 +164,9 @@ annotate()的每个参数都是一个annotation，它将添加到返回的QueryS
 # The number of entries on the first blog
 >>> q[0].entry__count
 >>> 42
->>> 4.order_by():
 ```
 
-order_by(*fields)
+4. order_by(*fields)
 
 默认情况下，根据模型的Meta类中的ordering属性对QuerySet中的对象进行排序
 
@@ -180,7 +180,7 @@ Student.objects.filter(school="阳关小学").order_by('-age', 'name')
 Student.objects.order_by('?')
 ```
 
- 5. reverse():
+5. reverse():
 
 reverse()
 
@@ -237,6 +237,7 @@ values(fields, *expressions)
 values_list(*fields, flat=False)
 
 与values()类似，只是在迭代时返回的是元组而不是字典。每个元组包含传递给values_list()调用的相应字段或表达式的值，因此第一个项目是第一个字段等。 像这样：
+
 ```shell
 >>> Student.objects.values_list('id', 'name')
 >>> <QuerySet [(1, 'Linxiao'), ...]>

@@ -2,7 +2,7 @@
 set -e;
 
 echo "安装brew环境"
-command -v brew || /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
+command -v brew || git clone --depth=1 https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/install.git brew-install ; /bin/bash brew-install/install.sh ; rm -rf brew-install
 # 一些备用的命令，如果brew安装东西慢可以修改brew的下载源地址为国内地址，达到提速目的
 # 修改brew镜像源
 # git -C "$(brew --repo)" remote set-url origin https://mirrors.ustc.edu.cn/brew.git
@@ -10,7 +10,13 @@ command -v brew || /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN
 # git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
 # 修改homebrew-cask镜像源（需要安装后才能修改）
 # git -C "$(brew --repo homebrew/cask)" remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
-# 更新
+# 替换上游brew
+brew tap --custom-remote --force-auto-update homebrew/core https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+brew tap --custom-remote --force-auto-update homebrew/cask https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git
+
+# 除 homebrew/core 和 homebrew/cask 仓库外的 tap 仓库仍然需要设置镜像
+brew tap --custom-remote --force-auto-update homebrew/command-not-found https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-command-not-found.git
+brew update
 echo "brew环境安装完成"
 brew update
 

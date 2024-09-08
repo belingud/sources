@@ -35,6 +35,12 @@ fi
 
 echo "########## ohmyzsh插件zsh-stntax-highlighting 安装成功."
 
+# 安装pypi ohmyzsh插件
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/pypi ]; then
+    git clone https://github.com/belingud/pypi \
+    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/pypi && plugins[2]="pypi"
+fi
+
 space=" "
 for $i in ${plugins[@]}; do $space=$space+i done
 echo "插件配置写入.zshrc文件 >>>> {$space}"
@@ -44,10 +50,62 @@ sed -i '' "s/(git/(git {$space}/g" cache || echo "插件配置写入.zshrc文错
 echo "ohmyzsh环境配置完毕"
 source ~/.zshrc
 
-echo "安装翻译工具Bob，php包管理软件composer，wget"
-brew install bob composer wget
-echo "开始下载docker compose文件"
-curl https://gitee.com/belingud/sources/raw/master/utils/config/env_init/docker-compose.yml > docker-compose.yml
-curl https://gitee.com/belingud/sources/raw/master/utils/config/env_init/Dockerfile > Dockerfile
-echo "docker compose文件下载完成，根据环境修改后在compose目录下使用 docker-compose up -d 启动"
-exit
+# echo "安装翻译工具Bob，php包管理软件composer，wget"
+# brew install bob composer wget
+# echo "开始下载docker compose文件"
+# curl https://gitee.com/belingud/sources/raw/master/utils/config/env_init/docker-compose.yml > docker-compose.yml
+# curl https://gitee.com/belingud/sources/raw/master/utils/config/env_init/Dockerfile > Dockerfile
+# echo "docker compose文件下载完成，根据环境修改后在compose目录下使用 docker-compose up -d 启动"
+
+echo "############# Install CHANGELOG generator git cliff #############"
+brew install git-cliff
+
+echo "############# Install git-delta #############"
+brew install git-delta
+git config --global core.pager "delta"
+git config --global interactive.diffFilter "delta --color-only --color-words"
+git config --global merge.conflictstyle diff3
+git config --global diff.colorMoved default
+git config --global delta.line-numbers true
+git config --global delta.navigate true
+git config --global delta.syntax-theme 'GitHub'
+
+echo "############# Clone delta repo to ~/.config/delta #############"
+git clone https://github.com/dandavison/delta.git ~/.config/delta
+git config --global include.path $HOME/.config/delta/themes.gitconfig
+echo "############# Set delta theme to villsau #############"
+git config --global delta.features villsau
+
+echo "############# Install wget/axel/bat/ccat/htop/tldr/thefuck/dblab/tssh/fzf/ruff/gdu/yt-dlp/jq #############"
+command -v wget || brew install wget
+command -v axel || brew install axel
+command -v bat || brew install bat
+command -v ccat || brew install ccat
+command -v htop || brew install htop
+command -v tldr || brew install tldr
+command -v thefuck || brew install thefuck
+command -v dlab || brew install dlab
+command -v tssh || brew install tssh
+command -v fzf || brew install fzf
+command -v redis-cli || brew install aoki/homerew-redis-cli/redis-cli
+command -v gdu || brew install gdu
+command -v ruff || brew install ruff
+command -v yt-dlp || brew install yt-dlp
+command -v jq || brew install jq
+
+echo "############# Install charmbracelet/tap/freeze #############"
+command -v freeze || brew install charmbracelet/tap/freeze
+
+echo "############# Install just #############"
+command -v just || brew install just
+
+echo "############# Install gh #############"
+command -v gh || brew install gh
+
+echo "############# Install dozer/onlyoffice/iina/pot/orbstack/qlcolorcode/qlstephen/qlmarkdown/qlimagesize/quicklook-json/openinterminal/lulu/insomnia/warp #############"
+brew install --cask dozer onlyoffice iina pot orbstack qlcolorcode qlstephen qlmarkdown qlimagesize quicklook-json openinterminal lulu insomnia warp
+
+echo "############# Install android-file-transfer/visual-studio-code/localsend #############"
+brew install --cask android-file-transfer
+command -v code || brew install --cask visual-studio-code
+brew install --cask localsend

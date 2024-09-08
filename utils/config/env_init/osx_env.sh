@@ -115,3 +115,8 @@ echo "############# Install android-file-transfer/visual-studio-code/localsend #
 brew install --cask android-file-transfer
 command -v code || brew install --cask visual-studio-code
 brew install --cask localsend
+
+echo "############# Install mise #############"
+command -v mise || brew install mise
+echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.zshrc
+echo 'export PATH="$HOME/.local/share/mise/shims:$PATH"' >> ~/.zprofile

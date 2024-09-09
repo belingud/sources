@@ -63,6 +63,12 @@ source ~/.zshrc
 # curl https://gitee.com/belingud/sources/raw/master/utils/config/env_init/Dockerfile > Dockerfile
 # echo "docker compose文件下载完成，根据环境修改后在compose目录下使用 docker-compose up -d 启动"
 
+echo "############# Install pyenv #############"
+brew install pyenv
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+
 echo "############# Install CHANGELOG generator git cliff #############"
 brew install git-cliff
 
@@ -82,14 +88,13 @@ git config --global include.path $HOME/.config/delta/themes.gitconfig
 echo "############# Set delta theme to villsau #############"
 git config --global delta.features villsau
 
-echo "############# Install wget/axel/bat/ccat/htop/tldr/thefuck/dblab/tssh/fzf/ruff/gdu/yt-dlp/jq #############"
+echo "############# Install wget/axel/bat/ccat/htop/tldr/dblab/tssh/fzf/ruff/gdu/yt-dlp/jq #############"
 command -v wget || brew install wget
 command -v axel || brew install axel
 command -v bat || brew install bat
 command -v ccat || brew install ccat
 command -v htop || brew install htop
 command -v tldr || brew install tldr
-command -v thefuck || brew install thefuck
 command -v dlab || brew install dlab
 command -v tssh || brew install tssh
 command -v fzf || brew install fzf
@@ -98,6 +103,14 @@ command -v gdu || brew install gdu
 command -v ruff || brew install ruff
 command -v yt-dlp || brew install yt-dlp
 command -v jq || brew install jq
+
+echo "############# Install thefuck #############"
+command -v thefuck || brew install thefuck
+echo 'eval $(thefuck --alias)' >> ~/.zshrc
+
+echo "############# Install pipx #############"
+brew install pipx
+pipx ensurepath
 
 echo "############# Install charmbracelet/tap/freeze #############"
 command -v freeze || brew install charmbracelet/tap/freeze
@@ -120,3 +133,5 @@ echo "############# Install mise #############"
 command -v mise || brew install mise
 echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.zshrc
 echo 'export PATH="$HOME/.local/share/mise/shims:$PATH"' >> ~/.zprofile
+echo '# let mise load .env
+export MISE_ENV_FILE=.env' >> ~/.zshrc

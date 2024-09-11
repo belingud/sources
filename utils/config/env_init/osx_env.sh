@@ -135,3 +135,6 @@ echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.zshrc
 echo 'export PATH="$HOME/.local/share/mise/shims:$PATH"' >> ~/.zprofile
 echo '# let mise load .env
 export MISE_ENV_FILE=.env' >> ~/.zshrc
+
+echo "############# Install gibo ###############"
+command -v gibo || brew install simonwhitaker/tap/gibo

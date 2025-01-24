@@ -95,10 +95,13 @@ brew install lulu
 
 ### wechat
 
-wechattweak-cli：防撤回
+wechattweak-cli：Mac微信防撤回
+
+仓库地址：https://github.com/Sunnyyoung/WeChatTweak-CLI
 
 ```bash
-brew install wechattweak-cli
+brew install sunnyyoung/repo/wechattweak-cli
+
 # 使用
 sudo wechattweak-cli install
 ```
@@ -108,6 +111,8 @@ sudo wechattweak-cli install
 ### itsycal
 itsycal，日历应用，可以在菜单栏中查看
 
+仓库地址：https://github.com/sfsam/Itsycal
+
 ```bash
 brew install itsycal
 ```
@@ -115,6 +120,8 @@ brew install itsycal
 ### ghostty
 
 ghostty，终端应用
+
+仓库地址：https://github.com/ghostty-org/ghostty
 
 ```bash
 brew install ghostty
@@ -124,7 +131,39 @@ brew install ghostty
 
 timg，终端查看图片的工具，支持kitty协议和iterm2协议
 
+仓库地址：https://github.com/hzeller/timg/
+
 ```bash
 brew install timg
 ```
 
+### btop
+
+btop，美化的ps，覆盖绝大部分需求，不需要使用其他gotop，htop等工具，支持自定义主题，快速查询，杀死进程。
+
+仓库地址：https://github.com/aristocratos/btop
+
+```bash
+brew install btop
+```
+
+btop catppuccin主题仓库：https://github.com/catppuccin/btop，使用方法见仓库。
+
+### vhs
+
+vhs适用于生成命令行录屏的命令行工具，挨个 <sample>.tape 文件中的命令，然后根据结果录屏，后台运行，原理是使用chrome的录屏功能。
+
+仓库地址：https://github.com/charmbracelet/vhs
+
+```shell
+brew install vhs
+
+# Arch Linux (btw)
+pacman -S vhs
+
+# Windows using scoop
+scoop install vhs
+
+# Go
+go install github.com/charmbracelet/vhs@latest
+```

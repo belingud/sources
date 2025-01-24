@@ -91,3 +91,40 @@ lulu，Mac上的开源GUI防火墙软件，mac的设置中禁止联网不生效�
 brew install lulu
 ```
 
+## 插件
+
+### wechat
+
+wechattweak-cli：防撤回
+
+```bash
+brew install wechattweak-cli
+# 使用
+sudo wechattweak-cli install
+```
+
+## 实用工具
+
+### itsycal
+itsycal，日历应用，可以在菜单栏中查看
+
+```bash
+brew install itsycal
+```
+
+### ghostty
+
+ghostty，终端应用
+
+```bash
+brew install ghostty
+```
+
+### timg
+
+timg，终端查看图片的工具，支持kitty协议和iterm2协议
+
+```bash
+brew install timg
+```
+

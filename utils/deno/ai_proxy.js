@@ -49,7 +49,7 @@ serve(async (request) => {
 
   try {
     const headers = new Headers();
-    const allowedHeaders = ["accept", "content-type", "authorization"];
+    const allowedHeaders = ["accept", "content-type", "authorization", "x-api-key"];
     for (const [key, value] of request.headers.entries()) {
       if (allowedHeaders.includes(key.toLowerCase())) {
         headers.set(key, value);

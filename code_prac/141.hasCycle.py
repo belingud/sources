@@ -15,5 +15,3 @@ class Solution:
             id_set.add(id(head))
             head = head.next
         return False
-
-

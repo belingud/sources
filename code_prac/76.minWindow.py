@@ -25,6 +25,7 @@ class Solution:
         left = 0
         res = ""
         lenMin = inf
+        # 还需要满足的字符种类数
         less = len(cnt)
         for right, ch in enumerate(s):
             # 1. 右移right，更新字符计数

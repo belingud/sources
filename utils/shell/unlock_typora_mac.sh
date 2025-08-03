@@ -5,6 +5,13 @@ TARGET_DIR="/Applications/Typora.app/Contents/Resources/TypeMark/page-dist/stati
 
 echo "正在处理 Typora 许可证文件..."
 
+# 检查是否安装了gsed
+if ! command -v gsed &> /dev/null; then
+    echo "错误: 未找到 gsed 命令"
+    echo "请先安装 GNU sed: brew install gnu-sed"
+    exit 1
+fi
+
 # 检查目录是否存在
 if [ ! -d "$TARGET_DIR" ]; then
     echo "错误: 目录不存在: $TARGET_DIR"
@@ -39,19 +46,22 @@ echo "搜索并修改 hasActivated 相关代码..."
 # 检查文件中是否包含目标字符串
 if grep -q 'hasActivated="true"==e\.hasActivated' "$JS_FILE"; then
     echo "找到目标字符串，正在替换..."
-    sed -i '' 's/hasActivated="true"==e\.hasActivated/hasActivated="true"=="true"/g' "$JS_FILE"
+    gsed -i 's/hasActivated="true"==e\.hasActivated/hasActivated="true"=="true"/g' "$JS_FILE"
     echo "✅ 成功修改文件"
     echo "已将 e.hasActivated 替换为 \"true\""
 elif grep -q 'e\.hasActivated' "$JS_FILE"; then
-    echo "找到 e.hasActivated，但格式可能不同，请手动确认:"
-    grep -n "e\.hasActivated" "$JS_FILE"
+    echo "找到 e.hasActivated，但格式可能不同"
+    echo "匹配的行数: $(grep -c 'e\.hasActivated' "$JS_FILE")"
     echo ""
     echo "如果需要手动替换，请使用以下命令:"
-    echo "sed -i '' 's/你找到的具体字符串/替换后的字符串/g' \"$JS_FILE\""
+    echo "gsed -i 's/你找到的具体字符串/替换后的字符串/g' \"$JS_FILE\""
 else
     echo "⚠️  未找到 e.hasActivated 相关内容"
-    echo "正在搜索 hasActivated 相关模式..."
-    grep -n "hasActivated" "$JS_FILE" || echo "未找到任何 hasActivated 相关内容"
+    if grep -q "hasActivated" "$JS_FILE"; then
+        echo "找到 hasActivated 相关内容，共 $(grep -c 'hasActivated' "$JS_FILE") 处"
+    else
+        echo "未找到任何 hasActivated 相关内容"
+    fi
 fi
 
 echo ""

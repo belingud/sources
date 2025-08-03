@@ -1,5 +1,5 @@
 // 基于deno的ai代理
-import { serve } from "https://deno.land/std/http/server.ts";
+// import { serve } from "https://deno.land/std/http/server.ts";
 
 const apiMapping = {
   "/discord": "https://discord.com/api",
@@ -19,7 +19,7 @@ const apiMapping = {
   "/openrouter": "https://openrouter.ai/api",
 };
 
-serve(async (request) => {
+Deno.serve(async (request) => {
   const url = new URL(request.url);
   const pathname = url.pathname;
 

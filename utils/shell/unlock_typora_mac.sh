@@ -2,16 +2,6 @@
 # 使用gitee链接获取并执行
 # curl -fsSL https://gitee.com/belingud/sources/raw/master/utils/shell/unlock_typora_mac.sh | bash
 
-# 检测并设置sed命令
-if command -v gsed >/dev/null 2>&1; then
-    SED_CMD="gsed"
-    echo "检测到 gsed 命令，使用 GNU sed"
-else
-    SED_CMD="sed"
-    echo "使用系统默认 sed 命令"
-    echo "💡 提示: 如果遇到问题，可以使用 'brew install gnu-sed' 安装 gsed 命令"
-fi
-
 # 导航到指定目录
 TARGET_DIR="/Applications/Typora.app/Contents/Resources/TypeMark/page-dist/static/js/"
 echo "正在处理 Typora 许可证文件..."
@@ -48,42 +38,27 @@ fi
 
 # 搜索并替换
 echo "搜索并修改 hasActivated 相关代码..."
-echo "使用 $SED_CMD 命令进行替换..."
 
 # 检查文件中是否包含目标字符串并尝试替换
-if grep -q 'hasActivated="true"==e\.hasActivated' "$JS_FILE"; then
-    echo "找到目标字符串，正在替换..."
-    # 使用检测到的 sed 命令进行替换，根据不同的 sed 使用不同的语法
-    if [ "$SED_CMD" = "gsed" ]; then
-        gsed -i "s/hasActivated=\"true\"==e\.hasActivated/hasActivated=\"true\"==\"true\"/g" "$JS_FILE"
-    else
-        sed -i '' "s/hasActivated=\"true\"==e\.hasActivated/hasActivated=\"true\"==\"true\"/g" "$JS_FILE"
-    fi
+if grep -q 'hasActivated="true"==e.hasActivated' "$JS_FILE"; then
+    echo "找到目标字符串，正在使用 perl 进行替换..."
+    # 使用 perl 进行原地替换，兼容性更好
+    perl -pi -e 's/hasActivated="true"==e.hasActivated/hasActivated="true"=="true"/g' "$JS_FILE"
     
     # 验证替换是否成功
     if grep -q 'hasActivated="true"=="true"' "$JS_FILE"; then
         echo "✅ 成功修改文件"
         echo "已将 e.hasActivated 替换为 \"true\""
     else
-        echo "❌ 替换可能失败，请手动检查"
-        if [ "$SED_CMD" = "sed" ]; then
-            echo "💡 建议安装 GNU sed: brew install gnu-sed"
-        fi
+        echo "❌ 替换失败，请手动检查"
         exit 1
     fi
-elif grep -q 'e\.hasActivated' "$JS_FILE"; then
+elif grep -q 'e.hasActivated' "$JS_FILE"; then
     echo "找到 e.hasActivated，但格式可能不同"
     echo ""
     echo "如果需要手动替换，请使用以下命令:"
-    if [ "$SED_CMD" = "gsed" ]; then
-        echo "gsed -i 's/你找到的具体字符串/替换后的字符串/g' \"$JS_FILE\""
-    else
-        echo "sed -i '' 's/你找到的具体字符串/替换后的字符串/g' \"$JS_FILE\""
-    fi
+    echo "perl -pi -e 's/你找到的具体字符串/替换后的字符串/g' \"$JS_FILE\""
     echo ""
-    if [ "$SED_CMD" = "sed" ]; then
-        echo "💡 如果上述命令出现问题，建议安装 GNU sed: brew install gnu-sed"
-    fi
     exit 1
 else
     echo "⚠️  未找到 e.hasActivated 相关内容"
@@ -101,4 +76,3 @@ fi
 echo ""
 echo "脚本执行完成!"
 echo "处理的文件: $JS_FILE"
-echo "使用的 sed 命令: $SED_CMD"

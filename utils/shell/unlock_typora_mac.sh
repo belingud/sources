@@ -1,4 +1,6 @@
 #!/bin/bash
+# 使用gitee链接获取并执行
+# curl -fsSL https://gitee.com/belingud/sources/raw/master/utils/shell/unlock_typora_mac.sh | bash
 
 # 导航到指定目录
 TARGET_DIR="/Applications/Typora.app/Contents/Resources/TypeMark/page-dist/static/js/"
